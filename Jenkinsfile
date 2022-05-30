@@ -39,7 +39,7 @@ pipeline {
         stage('Test Build Requirements') {
             steps {
                 sh 'java -version'
-                sh 'mvn -v'
+                //sh 'mvn -v'
             }
         }
 

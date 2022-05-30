@@ -61,6 +61,7 @@ pipeline {
 
         stage('Build') {
             steps {
+              sh 'java -version'
               //sh 'mvn -e -X package'
               //sh './mvnw test -Dsnyk.skip'
             }

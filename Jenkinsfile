@@ -3,7 +3,8 @@ pipeline {
 
     // Install the Jenkins tools you need for your project / environment
     tools {
-        maven 'maven' // Refers to a global tool configuration for Maven called 'maven-3.8.3'
+        //maven 'maven' // Refers to a global tool configuration for Maven called 'maven-3.8.3'
+        gradle 'gradle' // Refers to a global tool configuration for Gradle
     }
 
     // Pull your Snyk token from a Jenkins encrypted credential

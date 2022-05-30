@@ -30,7 +30,7 @@ pipeline {
             steps {
                 //git url: 'https://github.com/lmaeda/java-goofs.git'
                 //git url: 'https://github.com/lmaeda/BingAds-Java-SDK.git'
-                git url: 'https://github.com/lmaeda/gradle-multi-project-example.git'
+                git branch: 'TestCSMTest', url: 'https://github.com/lmaeda/gradle-multi-project-example.git'
 
                 sh 'ls -la'
             }
@@ -61,7 +61,7 @@ pipeline {
 
         stage('Build') {
             steps {
-              sh 'mvn -e -X package'
+              //sh 'mvn -e -X package'
               //sh './mvnw test -Dsnyk.skip'
             }
         }
@@ -71,7 +71,8 @@ pipeline {
         stage('Snyk Test using Snyk CLI') {
             steps {
                 //sh './snyk test --fail-on=upgradable --severity-threshold=critical --project-name=java-goofs --org=demo_high --target-reference=docker-tomcat'
-                sh './snyk test --fail-on=upgradable --severity-threshold=critical --project-name=BingAds-Java-SDK --org=demo_high --target-reference=main'
+                //sh './snyk test --fail-on=upgradable --severity-threshold=critical --project-name=BingAds-Java-SDK --org=demo_high --target-reference=main'
+                sh './snyk test --fail-on=upgradable --severity-threshold=critical --org=demo_high --target-reference=TestCSMTest'
             }
         }
 
@@ -81,7 +82,8 @@ pipeline {
             steps {
                 // Use your own Snyk Organization with --org=<your-org>
                 //sh './snyk monitor --fail-on=upgradable --severity-threshold=critical --project-name=java-goofs --org=demo_high --target-reference=docker-tomcat'
-                sh './snyk monitor --fail-on=upgradable --severity-threshold=critical --project-name=BingAds-Java-SDK --org=demo_high --target-reference=main'
+                //sh './snyk monitor --fail-on=upgradable --severity-threshold=critical --project-name=BingAds-Java-SDK --org=demo_high --target-reference=main'
+                sh './snyk monitor --fail-on=upgradable --severity-threshold=critical --org=demo_high --remote-repo-url=TestSnykCSM_02'
             }
         }
 
